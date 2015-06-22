@@ -1,1 +1,1 @@
-<https://github.com/sanskrit-coders/stardict-hindi/raw/master/en-head/tars/hi-shabdasAgar.tar.gz>
+<https://github.com/sanskrit-coders/stardict-hindi/raw/master/dev-head/tars/hi-shabdasAgar.tar.gz>
