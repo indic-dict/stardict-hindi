@@ -1,0 +1,23 @@
+STARDICT_TOOLS_DIR=~/stardict/tools/src/
+TABFILE=$(STARDICT_TOOLS_DIR)/tabfile
+
+
+ifndef dicts
+	dicts="*"
+endif
+
+.PHONY: all tars decompile dunzip
+
+all:stardict tars
+
+stardict:
+	eval $(TABFILE) $(dicts)/*.tsv
+	eval dictunzip $(dicts)/*.dz
+
+tars:
+	bash ../bin/make_tarballs.sh https://github.com/sanskrit-coders/stardict-hindi/raw/master/en-head
+dunzip:
+	bash dictunzip */*.dz
+
+decompile:
+	bash ./decompile_all.sh
