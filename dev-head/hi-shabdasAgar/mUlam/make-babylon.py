@@ -21,7 +21,7 @@ for line in sys.stdin:
     head2 = regex.sub(r'ं(प|फ|ब|भ)', r'म्\g<1>', head2)
     headwords = list(set([head, head2]))
     
-    value = regex.sub(r'((०|१|२|३|४|५|६|७|८|९|१०){1,2})', r'<br><br>\g<1> ', value)    
+    value = regex.sub(r'((०|१|२|३|४|५|६|७|८|९|१०){1,2})\s*\.', r'<br><br>\g<1>. ', value)    
     value = regex.sub(r' +', ' ', value)    
     print "|".join(headwords) + "\n" + value.strip() + "\n"
   except ValueError:
