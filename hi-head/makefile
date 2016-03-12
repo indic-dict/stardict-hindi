@@ -1,29 +1,23 @@
 STARDICT_TOOLS_DIR=~/stardict/tools/src/
 TABFILE=$(STARDICT_TOOLS_DIR)/tabfile
-BABYLON=$(STARDICT_TOOLS_DIR)/babylon
-
+STARDICT_SANSKRIT_BIN=~/stardict-sanskrit/bin
 
 ifndef dicts
-	dicts=*
+	dicts="*"
 endif
 
 .PHONY: all tars decompile dunzip
 
-all:stardict dictunzip tars
+all:add_optitrans stardict tars
 
-dictunzip:
-	eval dictunzip $(dicts)/*.dz
+stardict:
+	bash $(STARDICT_SANSKRIT_BIN)/tsv_to_stardict.sh 
 
-stardict: babylon tsv
-
-babylon:
-	for file in `ls $(dicts)/*.babylon` ; do $(BABYLON) $$file; done;
-
-tsv:
-	for file in `ls $(dicts)/*.tsv` ; do echo $$file; $(TABFILE) $$file; done;
+add_optitrans:
+	bash $(STARDICT_SANSKRIT_BIN)/babylon_add_optitrans.sh 
 
 tars:
-	bash ../bin/make_tarballs.sh https://github.com/sanskrit-coders/stardict-hindi/raw/master/dev-head
-
+	bash $(STARDICT_SANSKRIT_BIN)/make_tarballs.sh https://github.com/sanskrit-coders/stardict-hindi/raw/master/hi-head
+	
 decompile:
 	bash ./decompile_all.sh
