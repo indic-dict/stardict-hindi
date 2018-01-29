@@ -17,5 +17,5 @@ stardict:
 
 	
 tars:
-	bash $(STARDICT_SANSKRIT_BIN)/make_tarballs.sh https://github.com/sanskrit-coders/stardict-hindi/raw/master/$(shell pwd|sed -e s/.*stardict-.*?[/]//) DICTS=$(DICTS)
+	bash $(STARDICT_SANSKRIT_BIN)/make_tarballs.sh https://github.com/sanskrit-coders/stardict-hindi/raw/master/$(shell pwd|sed -e s/.*stardict-[^/]*[/]//)/tars DICTS=$(DICTS)
 
