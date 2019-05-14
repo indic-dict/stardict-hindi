@@ -1,6 +1,6 @@
 STARDICT_TOOLS_DIR=~/stardict/tools/src/
 TABFILE=$(STARDICT_TOOLS_DIR)/tabfile
-STARDICT_SANSKRIT_BIN=~/stardict-sanskrit/bin
+DICT_TOOLS_BIN_BASH=~/dict-tools/bin/bash
 
 # make all DICTS=xyz
 DICTS=.*
@@ -10,12 +10,12 @@ DICTS=.*
 all:final_babylon stardict tars
 
 final_babylon:
-	bash $(STARDICT_SANSKRIT_BIN)/babylon_add_optitrans.sh DICTS=$(DICTS)
+	bash $(DICT_TOOLS_BIN_BASH)/babylon_add_optitrans.sh DICTS=$(DICTS)
 
 stardict:
-	bash $(STARDICT_SANSKRIT_BIN)/tsv_to_stardict.sh DICTS=$(DICTS)
+	bash $(DICT_TOOLS_BIN_BASH)/tsv_to_stardict.sh DICTS=$(DICTS)
 
 	
 tars:
-	bash $(STARDICT_SANSKRIT_BIN)/make_tarballs.sh https://github.com/indic-dict/stardict-hindi/raw/master/$(shell pwd|sed -e s/.*stardict-[^/]*[/]//)/tars DICTS=$(DICTS)
+	bash $(DICT_TOOLS_BIN_BASH)/make_tarballs.sh https://github.com/indic-dict/stardict-hindi/raw/master/$(shell pwd|sed -e s/.*stardict-[^/]*[/]//)/tars DICTS=$(DICTS)
 
