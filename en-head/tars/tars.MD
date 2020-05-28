@@ -1,2 +1,2 @@
-<https://archive.org/download/stardict_collections/archives-english/en-head/stardict-freedict2-eng-hin-2.4.2.tar.bz2>
+<https://github.com/indic-dict/stardict-hindi/raw/gh-pages/en-head/tars/stardict-freedict2-eng-hin.tar.gz>
 
