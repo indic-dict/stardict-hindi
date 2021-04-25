@@ -2,6 +2,9 @@ STARDICT_TOOLS_DIR=~/stardict/tools/src/
 TABFILE=$(STARDICT_TOOLS_DIR)/tabfile
 DICT_TOOLS_BIN_BASH=~/dict-tools/bin/bash
 
+# Let the URL not end with /.
+URL=https://github.com/indic-dict/stardict-hindi/raw/gh-pages/$(shell pwd|sed -e s/.*[/]//)/tars
+
 # make all DICTS=xyz
 DICTS=.*
 
@@ -20,4 +23,9 @@ tars:
 	bash $(DICT_TOOLS_BIN_BASH)/make_tarballs.sh https://github.com/indic-dict/stardict-hindi/raw/gh-pages/$(shell pwd|sed -e s/.*stardict-[^/]*[/]//)/tars DICTS=$(DICTS)
 
 full:
-	bash $(DICT_TOOLS_BIN_BASH)/full_build.sh https://github.com/indic-dict/stardict-hindi/raw/gh-pages/$(shell pwd|sed -e s/.*stardict-[^/]*[/]//)/tars DICTS=$(DICTS) GITHUB_TOKEN=$(GITHUB_TOKEN)
+	bash $(DICT_TOOLS_BIN_BASH)/full_build.sh $(URL) DICTS=$(DICTS) GITHUB_TOKEN=$(GITHUB_TOKEN)
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+current_dir := $(dir $(mkfile_path))
+# Let the URL not end with /.
+tarlist:
+	bash $(DICT_TOOLS_BIN_BASH)/update_tars_md.sh $(current_dir)tars $(URL)
